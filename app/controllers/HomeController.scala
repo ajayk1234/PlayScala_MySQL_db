@@ -25,29 +25,31 @@ class HomeController @Inject()(db: Database,
     )(User.apply)(User.unapply)
   )
 
-  def addUserToDB = Action { implicit request =>
-    val user = userForm.bindFromRequest.get
-    val conn = db.getConnection()
+//  render user form which take input as firstname and lastname
+  def addUser = Action { implicit request =>
+    Ok(views.html.user(userForm))
 
-    try{
+  }
+
+//  add values of User object to user table and shows message
+  def addUserToDB = Action { implicit request =>
+    val user = userForm.bindFromRequest.get //get user object which has input values
+    val conn = db.getConnection() // conn object create connection which MySQL DB
+
+    try {
       val prestmt = conn.prepareStatement("insert into user values(?,?)")
       prestmt.setString(1, user.firstname)
       prestmt.setString(2, user.lastname)
       prestmt.executeUpdate()
-    }
-    finally {
+    } finally {
       conn.close()
     }
 
     Ok("User added successfully")
   }
 
-  def addUser = Action { implicit request =>
-    Ok(views.html.login(userForm))
-
-  }
-
-  def index = Action {
+//  fetch all the users from database and store it in map and call user html page which show all users
+  def allUser = Action {
     var users: Map[String, String] = Map()
     val conn = db.getConnection()
 
@@ -63,7 +65,7 @@ class HomeController @Inject()(db: Database,
     } finally {
       conn.close()
     }
-    Ok(views.html.index(users))
+    Ok(views.html.user(users))
   }
 
 }
