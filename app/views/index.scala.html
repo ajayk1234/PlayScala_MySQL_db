@@ -1,0 +1,23 @@
+@(users:Map[String,String] )
+
+@main("Welcome to Play") {
+<h1>List of Users</h1>
+<table>
+  <tr>
+    <td> |Firstname   </td>
+    <td> |Lastname    </td>
+    <td> | </td>
+    <tr>_________________________</tr>
+  </tr>
+  @for((firstname,lastname) <- users) {
+
+  <tr>
+  <tr></tr>
+  <td>|  @(firstname)</td>
+    <td>|  @(lastname)</td>
+    <td>|</td>
+  <tr></tr>
+  </tr>
+  }
+</table>
+}
