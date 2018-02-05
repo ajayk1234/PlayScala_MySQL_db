@@ -10,5 +10,9 @@ GET     /users                           controllers.HomeController.allUser
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 
-POST /          controllers.HomeController.addUserToDB
+POST /adduser          controllers.HomeController.addUserToDB
 GET /adduser    controllers.HomeController.addUser
+GET /    controllers.HomeController.home
+
+POST /login         controllers.HomeController.doLogin
+GET /login          controllers.HomeController.login

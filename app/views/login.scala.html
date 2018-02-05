@@ -1,0 +1,9 @@
+@(userForm: Form[User])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+
+@helper.form(action = routes.HomeController.doLogin() ) {
+@helper.CSRF.formField
+@helper.inputText(userForm("username"))
+@helper.inputPassword(userForm("password"))
+<button type="submit" name="action" value="edit">Login</button>
+<a href='@routes.HomeController.home()'>Back</a>
+}
