@@ -4,16 +4,16 @@
 <h1>List of Users</h1>
 <table>
   <tr>
-    <td> |Username   </td>
-    <td> |Password    </td>
+    <td> |Name   </td>
+    <td> |UserName    </td>
     <td> | </td>
   </tr>
-  @for((firstname,lastname) <- users) {
+  @for((name,username) <- users) {
 
   <tr>
   <tr></tr>
-  <td>|  @(firstname)</td>
-    <td>| @@@@@@ </td>
+  <td>|  @(name)</td>
+    <td>| @(username)  </td>
     <td>|</td>
   <tr></tr>
   </tr>

@@ -75,9 +75,9 @@ class HomeController @Inject()(db: Database,
       val stmt = conn.createStatement
       val rs = stmt.executeQuery("SELECT * from user ")
       while (rs.next()) {
-        var firstname = rs.getString("username")
-        var lastname = rs.getString("password")
-        users += firstname -> lastname
+        var name = rs.getString("firstname")+" "+rs.getString("lastname")
+        var username = rs.getString("username")
+        users += name -> username
       }
     } finally {
       conn.close()
